@@ -1,0 +1,19 @@
+{
+  "name": "playwright-cli",
+  "version": "0.1.0",
+  "description": "Playwright CLI browser automation skills for Claude Code.",
+  "author": {
+    "name": "Accelerate Data"
+  },
+  "repository": "https://github.com/accelerate-data/playwright-cli",
+  "license": "Apache-2.0",
+  "keywords": [
+    "playwright",
+    "browser-automation",
+    "testing",
+    "skills",
+    "claude-code",
+    "codex"
+  ],
+  "skills": "./skills"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "playwright-cli",
+  "version": "0.1.0",
+  "description": "Playwright CLI browser automation skills for Codex.",
+  "author": {
+    "name": "Accelerate Data"
+  },
+  "repository": "https://github.com/accelerate-data/playwright-cli",
+  "license": "Apache-2.0",
+  "keywords": [
+    "playwright",
+    "browser-automation",
+    "testing",
+    "skills",
+    "codex",
+    "claude-code"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Playwright CLI",
+    "shortDescription": "Automate browser testing through Playwright CLI skills.",
+    "developerName": "Accelerate Data",
+    "category": "Coding",
+    "capabilities": [],
+    "screenshots": []
+  }
+}

@@ -1,0 +1,55 @@
+name: Sync upstream
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-upstream:
+    name: Sync upstream skill
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout wrapper
+        uses: actions/checkout@v4
+
+      - name: Sparse checkout upstream
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          tmpdir="$(mktemp -d)"
+          trap 'rm -rf "$tmpdir"' EXIT
+
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/microsoft/playwright-cli.git \
+            "$tmpdir/playwright-cli"
+
+          cd "$tmpdir/playwright-cli"
+          git sparse-checkout set --no-cone /skills/playwright-cli/ /LICENSE /README.md
+
+          cd "$GITHUB_WORKSPACE"
+          rm -rf skills/playwright-cli
+          mkdir -p skills
+          cp -R "$tmpdir/playwright-cli/skills/playwright-cli" ./skills/playwright-cli
+
+          cp "$tmpdir/playwright-cli/LICENSE" ./LICENSE 2>/dev/null || true
+          cp "$tmpdir/playwright-cli/README.md" ./UPSTREAM-README.md 2>/dev/null || true
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/sync-upstream
+          commit-message: "chore: sync upstream playwright-cli skill"
+          title: "chore: sync upstream playwright-cli skill"
+          body: |
+            Weekly sparse sync from microsoft/playwright-cli.
+
+            Synced paths:
+            - skills/playwright-cli
+            - LICENSE
+            - UPSTREAM-README.md
