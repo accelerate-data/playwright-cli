@@ -1,6 +1,6 @@
 {
   "name": "playwright-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Playwright CLI browser automation skills for Codex.",
   "author": {
     "name": "Accelerate Data"
@@ -20,8 +20,9 @@
     "displayName": "Playwright CLI",
     "shortDescription": "Automate browser testing through Playwright CLI skills.",
     "developerName": "Accelerate Data",
-    "category": "Coding",
+    "category": "Developer Tools",
     "capabilities": [],
-    "screenshots": []
+    "screenshots": [],
+    "longDescription": "Playwright CLI browser automation skills for Codex."
   }
 }
